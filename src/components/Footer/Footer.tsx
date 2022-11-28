@@ -1,23 +1,18 @@
-import classNames from 'classnames'
-import { Container } from '../../layout/Container'
-
-import styles from "./Footer.module.scss"
-
+import classNames from 'classnames';
+import { Container } from '../../layout/Container';
 
 interface FooterProps {
-  className?: string
+  className?: string;
 }
 
 export const Footer = ({ className = '', ...attrs }: FooterProps) => {
-  const classes = classNames(styles.Footer, className)
+  const classes = classNames('Footer', className);
 
   return (
     <footer className={classes} {...attrs}>
       <Container>
-        <div className="flex justify-center">
-          Footer Component
-        </div>
+        <div className='flex justify-center'>Footer Component</div>
       </Container>
     </footer>
-  )
-}
+  );
+};
