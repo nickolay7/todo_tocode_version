@@ -1,43 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { v4 as fakeId } from 'uuid';
 
 import { Container } from 'layout/Container';
 import { Todo } from 'types/types';
-import { Form } from '../../components/todo';
+import { Form, TodoList } from '../../components/todo';
 
-interface HomeProps {}
-
-interface TodoListProp {
-  items: Todo[];
-}
-
-const TodoList = ({ items }: TodoListProp) => {
-  return (
-    <ul>
-      {(items &&
-        items.length !== 0 &&
-        items.map(({ id, title }) => <li key={id}>{title}</li>)) ||
-        'List not found :('}
-    </ul>
-  );
-};
-
-export const Home = ({}: HomeProps) => {
+export const Home = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const addTodo = (title: string) => {
     const newTodo: Todo = {
       id: fakeId(),
       title,
+      isCompleted: false,
     };
 
     setTodos([...todos, newTodo]);
   };
 
+  useEffect(() => console.log(todos));
+
+  const toggleTodo = (id: string) => {
+    const newTodo = todos.map((todo) =>
+      todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+    );
+
+    setTodos(newTodo);
+  };
+
   return (
     <Container className=''>
       <Form addTodo={addTodo} />
-      <TodoList items={todos} />
+      <TodoList items={todos} toggleTodo={toggleTodo} />
     </Container>
   );
 };
