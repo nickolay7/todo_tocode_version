@@ -4,11 +4,11 @@ import { Route, Routes } from 'react-router-dom';
 import { Header } from 'components/Header';
 import { Footer } from 'components/Footer';
 import { NotFoundPage } from 'pages/NotFoundPage';
-import { Home } from './pages/Home';
+import { Home } from '../pages/Home';
 
-import './scss/main.scss';
+import '../scss/main.scss';
 
-const About = () => <h2>About</h2>;
+const About = () => <h2 className='ui-title-2 text-center pt-8'>About</h2>;
 
 function App() {
   return (

@@ -11,6 +11,10 @@
   text-overflow: ellipsis;
 }
 
+.text-decoration-none:hover {
+  text-decoration: none;
+}
+
 .font-normal {
   font-weight: 500;
 }

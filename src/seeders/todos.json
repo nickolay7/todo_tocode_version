@@ -1,22 +1,54 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "title": "Learn JavaScript",
-    "isCompleted": false
+    "isCompleted": false,
+    "tags": []
   },
   {
-    "id": 2,
+    "id": "2",
     "title": "Learn TypeScript",
-    "isCompleted": false
+    "isCompleted": false,
+    "tags": [
+      {
+        "id": 1,
+        "isActive": false,
+        "title": "work"
+      },
+      {
+        "id": 5,
+        "isActive": false,
+        "title": "self"
+      }
+    ]
   },
   {
-    "id": 3,
+    "id": "3",
     "title": "Learn React",
-    "isCompleted": false
+    "isCompleted": false,
+    "tags": [
+      {
+        "id": 2,
+        "isActive": false,
+        "title": "home"
+      }
+    ]
   },
   {
-    "id": 4,
+    "id": "4",
     "title": "Learn Redux",
-    "isCompleted": false
+    "isCompleted": false,
+    "tags": [
+      {
+        "id": 3,
+        "isActive": false,
+        "title": "study"
+      },
+      {
+        "id": 4,
+        "isActive": false,
+        "title": "idea"
+      }
+    ]
   }
 ]

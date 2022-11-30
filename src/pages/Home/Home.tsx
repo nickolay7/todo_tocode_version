@@ -1,29 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { v4 as fakeId } from 'uuid';
 
 import { Container } from 'layout/Container';
 import { Todo } from 'types/types';
 import { Form, ItemsList } from 'components/todo';
-import todosSeeder from 'seeders/todos.json';
+import { useAppContext } from 'app/contextProvider';
+import { FilterByTag } from 'components/todo/filterByTag';
+import { viewFilter } from './lib/viewFilter';
+import { useLocalStorage } from './lib/useLocalStorage';
 
 export const Home = () => {
-  const localStorageData = JSON.parse(localStorage.getItem('todos') || 'null');
+  const { tags, filter, filterTags, setFilterByTag, resetTagsActive } =
+    useAppContext();
 
-  const _items =
-    localStorageData && localStorageData.length > 0
-      ? localStorageData
-      : todosSeeder;
+  const [items, setItems] = useLocalStorage();
 
-  const [items, setItems] = useState<Todo[]>(_items || []);
+  const activeTags = tags.filter(({ isActive }) => isActive);
 
   const addTodo = (title: string) => {
     const newTodo: Todo = {
       id: fakeId(),
       title,
       isCompleted: false,
+      tags: activeTags,
     };
 
     setItems([...items, newTodo]);
+    resetTagsActive();
   };
 
   const toggleTodo = (id: string) => {
@@ -40,18 +43,25 @@ export const Home = () => {
     setItems(newTodos);
   };
 
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(items));
-  }, [items]);
+  useEffect(() => setFilterByTag(), [filterTags, setFilterByTag]);
+
+  const visibleTodo = viewFilter(items, filter);
 
   return (
     <Container className=''>
-      <Form addTodo={addTodo} />
-      <ItemsList
-        items={items}
-        toggleTodo={toggleTodo}
-        removeTodo={removeTodo}
-      />
+      <div className='view-wrapper'>
+        <div className='view-sidebar'>
+          <FilterByTag />
+        </div>
+        <div className='view-content'>
+          <Form addTodo={addTodo} />
+          <ItemsList
+            items={visibleTodo}
+            toggleTodo={toggleTodo}
+            removeTodo={removeTodo}
+          />
+        </div>
+      </div>
     </Container>
   );
 };
