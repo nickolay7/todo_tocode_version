@@ -8,4 +8,4 @@ yarn
 
 yarn start
 
-## Please visit the site https://nickolay7.github.io/todo_tocode_version_deploy/
+## Please visit the site https://nickolay7.github.io/todo_tocode_version/
