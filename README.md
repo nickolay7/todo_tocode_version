@@ -8,4 +8,4 @@ yarn
 
 yarn start
 
-## Please visit the site https://nickolay7.github.io/todo_tocode_version/
+## Please visit [The site](https://creative-torte-648dc2.netlify.app/)

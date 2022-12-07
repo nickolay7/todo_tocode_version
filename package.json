@@ -1,11 +1,14 @@
 {
   "name": "todoTCDVersion",
+  "homepage": "https://nickolay7.github.io/todo_tocode_version/",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "component": "generate-react component"
+    "component": "generate-react component",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +46,7 @@
   "devDependencies": {
     "@types/node-sass": "^4.11.3",
     "generate-react-cli": "^8.0.1",
+    "gh-pages": "^4.0.0",
     "node-sass": "^8.0.0",
     "prettier": "^2.8.0"
   }
